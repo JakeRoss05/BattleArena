@@ -1,25 +1,21 @@
 package game;
 
-//Good
-import model.Hero;
-import model.Mage;
-import model.Wizard;
-
-//Bad
-import model.Skeleton;
-import model.Dragur;
-import model.Critter;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Enemy;
+import model.enemies.Critter;
+import model.enemies.Dragur;
+import model.enemies.Skeleton;
+import model.heroes.Hero;
+import model.heroes.Mage;
+import model.heroes.Wizard;
 
 public class Game {
     public void run() {
         System.out.println("Welcome to Battle Arena!");
 
-        Hero hero = chooseHero();
+        model.Hero hero = chooseHero();
         System.out.println("You have chosen: " + hero.getName() + "(" +hero.getClassName() + ")");
 
         List<Enemy> wave = buildWave();
@@ -29,18 +25,18 @@ public class Game {
         System.out.println("Game Over!");
     }
 
-    private Hero chooseHero () {
+    private model.Hero chooseHero () {
         System.out.println("Choose your hero:");
         System.out.println("1. Hero");
         System.out.println("2. Mage");
         System.out.println("3. Wizard");
 
-        int choice = InputHelper.getIntInRange(1, 3);
+        int choice = Input.getIntInRange(1, 3);
 
         return switch (choice) {
             case 1 -> new Hero("Arthas");
             case 2 -> new Mage("Jaina");
-            default -> throw new Wizard("Medivh");
+            default -> new Wizard("Medivh");
         };
     }
 

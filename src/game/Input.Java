@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Input {
     public static final Scanner SC = new Scanner(System.in);
 
+    public static int getIntInRange(int min, int max) {
+        return readIntInRange("Enter choice: ", min, max);
+    }
+
     public static int readIntInRange(String prompt, int min, int max) {
         while(true) {
             System.out.print(prompt);
